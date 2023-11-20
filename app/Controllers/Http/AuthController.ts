@@ -1,6 +1,8 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { schema, rules } from "@ioc:Adonis/Core/Validator";
 import User from "App/Models/User";
+import env from "@ioc:Adonis/Core/Env";
+
 export default class AuthController {
   public async loginShow({ view }: HttpContextContract) {
     return view.render("auth/login");
@@ -100,7 +102,7 @@ export default class AuthController {
         .first();
       if (user) {
         await auth.use("web").login(user, !!request.only(["rememberMeToken"]));
-        if (user?.password === "supersuperadmin") {
+        if (user?.password === env.get("ADMIN_PASSWORD")) {
           return response.redirect("/admin/");
         } else {
           return response.redirect("/" + user.userName + "/");

@@ -41,4 +41,6 @@ export default Env.rules({
   MAILGUN_DOMAIN: Env.schema.string(),
   //
   SPARKPOST_API_KEY: Env.schema.string(),
+  //
+  ADMIN_PASSWORD: Env.schema.string(),
 });

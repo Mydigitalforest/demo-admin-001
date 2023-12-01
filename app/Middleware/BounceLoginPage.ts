@@ -8,7 +8,7 @@ export default class BounceLoginPage {
   ) {
     // code for middleware goes here. ABOVE THE NEXT CALL
     if (await auth.check()) {
-      if (auth.user?.password === env.get("ADMIN_PASSWORD)) {
+      if (auth.user?.password === env.get("ADMIN_PASSWORD")) {
         return response.redirect().toPath("/admin/");
       } else {
         return response

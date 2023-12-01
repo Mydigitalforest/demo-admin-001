@@ -8,7 +8,7 @@ export default class AdminMiddleware {
   ) {
     await auth.check();
     // code for middleware goes here. ABOVE THE NEXT CALL
-    if (auth.user?.password == env.get("ADMIN_PASSWORD")) {
+    if (auth.user?.password === env.get("ADMIN_PASSWORD")) {
       await next();
     } else {
         return response.redirect().toPath("/auth/login");
